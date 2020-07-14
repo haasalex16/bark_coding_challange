@@ -1,0 +1,9 @@
+<div class="pagination">
+  <%= button_to 'Prev Page', root_path, params: {page: @page_number - 1}, method: :get, disabled: @page_number <= 1  %>
+  <div class="pagination">
+    <% @total_pages.times do |page_no| %>
+    <%= link_to page_no + 1, root_path(page: page_no + 1), { class: "pagination_link #{@page_number == page_no + 1 ? "active": ""}"}  %>
+    <% end %>
+  </div>
+  <%= button_to 'Next Page', root_path, params: {page: @page_number + 1}, method: :get, disabled: @total_pages <= @page_number  %>
+</div>

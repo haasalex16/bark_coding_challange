@@ -19,3 +19,20 @@ header {
   display: flex;
   justify-content: space-between;
 }
+
+.pagination {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 640px;
+}
+
+.pagination_link {
+  padding: 8px;
+  border: 1px solid #000;
+  margin: 0 4px;
+}
+
+.pagination_link.active {
+  background-color: yellow;
+}

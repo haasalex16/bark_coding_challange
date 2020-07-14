@@ -4,7 +4,9 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all
+    @page_number = params[:page]&.to_i || 1
+    @dogs = Dog.all.limit(User::DOGS_PER_PAGE).offset((@page_number - 1) * User::DOGS_PER_PAGE)
+    @total_pages = (Dog.count.to_f / User::DOGS_PER_PAGE).ceil
   end
 
   # GET /dogs/1
