@@ -20,7 +20,7 @@ View the site at http://localhost:3000
 
 # TODO
 
-- [ ] Add pagination to index page, to display 5 dogs per page
+- [x] Add pagination to index page, to display 5 dogs per page
 
 - [ ] Add the ability to for a user to input multiple dog images on an edit form or new dog form
 
@@ -28,7 +28,9 @@ View the site at http://localhost:3000
 
   - A.Haas notes: I currently have this as a required relationship so if you try and edit a "stray" dog or creating a new dog while not signed in then it will fail
 
-- [ ] Allow editing only by owner
+- [x] Allow editing only by owner
+
+  - A.Haas notes: I would think you should also not be able to delete the dog so alos limited this if you are not the owner
 
 - [ ] Allow users to like other dogs (not their own)
 
