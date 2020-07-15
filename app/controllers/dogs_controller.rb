@@ -2,12 +2,14 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :user_is_owner, only: [:edit, :update, :destroy]
 
+  DOGS_PER_PAGE = 5
+
   # GET /dogs
   # GET /dogs.json
   def index
     @page_number = params[:page]&.to_i || 1
-    @dogs = Dog.all.limit(User::DOGS_PER_PAGE).offset((@page_number - 1) * User::DOGS_PER_PAGE)
-    @total_pages = (Dog.count.to_f / User::DOGS_PER_PAGE).ceil
+    @dogs = Dog.all.limit(DOGS_PER_PAGE).offset((@page_number - 1) * DOGS_PER_PAGE)
+    @total_pages = (Dog.count.to_f / DOGS_PER_PAGE).ceil
   end
 
   # GET /dogs/1

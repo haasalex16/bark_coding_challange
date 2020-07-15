@@ -5,3 +5,7 @@
     <%= image_tag url_for(dog.images.first), class: "dog-photo", alt: "Photo of #{dog.name}" %>
   </article>
 </a>
+
+<% if (dog_counter + 1) % 2 == 0 %>
+<%= render partial: 'ad' %>
+<% end %>
