@@ -30,10 +30,12 @@ View the site at http://localhost:3000
 
 - [x] Allow editing only by owner
 
-  - A.Haas notes: I would think you should also not be able to delete the dog so alos limited this if you are not the owner
+  - A.Haas notes: I would think you should also not be able to delete the dog so also limited this if you are not the owner
 
 - [x]] Allow users to like other dogs (not their own)
 
-- [ ] Allow sorting the index page by number of likes in the last hour
+- [x] Allow sorting the index page by number of likes in the last hour
 
 - [x] Display the ad.jpg image (saved at app/assets/images/ad.jpg) after every 2 dogs in the index page, to simulate advertisements in a feed.
+
+  - A.Haas notes: I would think you should also not be able to delete the dog so also limited this if you are not the owner

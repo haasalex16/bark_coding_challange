@@ -5,6 +5,6 @@ class Dog < ApplicationRecord
   belongs_to :user
 
   def like_count
-    likes.where(liked: true).count
+    likes.where(liked: true).size
   end
 end

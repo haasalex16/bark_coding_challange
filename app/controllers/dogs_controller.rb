@@ -8,13 +8,23 @@ class DogsController < ApplicationController
   # GET /dogs.json
   def index
     @page_number = params[:page]&.to_i || 1
-    @dogs = Dog.all.limit(DOGS_PER_PAGE).offset((@page_number - 1) * DOGS_PER_PAGE)
+    @sort = params[:sort] == "true"
+
+    query = Dog.eager_load(:likes)
+    if @sort
+      query = query.left_joins(:likes).group(:id)
+                   .order("sum(case when likes.liked = true and likes.updated_at > '#{1.hour.ago.utc}' then 1 else 0 end) desc")
+    end
+
+    @dogs = query.order(updated_at: :DESC, id: :DESC).limit(DOGS_PER_PAGE).offset((@page_number - 1) * DOGS_PER_PAGE)
+
     @total_pages = (Dog.count.to_f / DOGS_PER_PAGE).ceil
   end
 
   # GET /dogs/1
   # GET /dogs/1.json
   def show
+    @liked_by_user = Like.find_by(user_id: current_user&.id, likeable_id: @dog.id, likeable_type: 'Dog')&.liked
   end
 
   # GET /dogs/new
