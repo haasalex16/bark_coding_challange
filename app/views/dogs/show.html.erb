@@ -1,5 +1,8 @@
 <section>
-  <h2><%= @dog.name %></h2>
+  <% if current_user.present? && current_user.id != @dog.user_id %>
+  <%= button_to "Like #{@dog.name}'s Profile", likes_path({likeable_id: @dog.id, likeable_type: "Dog", user_id: current_user.id}), method: :post %>
+  <% end %>
+  <h2><%= "#{@dog.name} (#{@dog.like_count} Likes)"%></h2>
 
   <% @dog.images.each do |image| %>
   <%= image_tag url_for(image), alt: "Photo of #{@dog.name}" %>

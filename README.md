@@ -32,7 +32,7 @@ View the site at http://localhost:3000
 
   - A.Haas notes: I would think you should also not be able to delete the dog so alos limited this if you are not the owner
 
-- [ ] Allow users to like other dogs (not their own)
+- [x]] Allow users to like other dogs (not their own)
 
 - [ ] Allow sorting the index page by number of likes in the last hour
 
