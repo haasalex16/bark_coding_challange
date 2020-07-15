@@ -22,7 +22,7 @@ View the site at http://localhost:3000
 
 - [x] Add pagination to index page, to display 5 dogs per page
 
-- [ ] Add the ability to for a user to input multiple dog images on an edit form or new dog form
+- [x] Add the ability to for a user to input multiple dog images on an edit form or new dog form
 
 - [x] Associate dogs with owners
 
@@ -37,5 +37,3 @@ View the site at http://localhost:3000
 - [x] Allow sorting the index page by number of likes in the last hour
 
 - [x] Display the ad.jpg image (saved at app/assets/images/ad.jpg) after every 2 dogs in the index page, to simulate advertisements in a feed.
-
-  - A.Haas notes: I would think you should also not be able to delete the dog so also limited this if you are not the owner
