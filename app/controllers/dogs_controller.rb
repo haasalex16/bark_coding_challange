@@ -2,7 +2,9 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :user_is_owner, only: [:edit, :update, :destroy]
 
+  # CONTANTS
   DOGS_PER_PAGE = 5
+  RECENT_LIKES_TIMEFRAME = 1.hour.ago.utc
 
   # GET /dogs
   # GET /dogs.json
@@ -10,13 +12,14 @@ class DogsController < ApplicationController
     @page_number = params[:page]&.to_i || 1
     @sort = params[:sort] == "true"
 
-    query = Dog.eager_load(:likes)
+    query = Dog.left_joins(:likes).group(:id)
     if @sort
-      query = query.left_joins(:likes).group(:id)
-                   .order("sum(case when likes.liked = true and likes.updated_at > '#{1.hour.ago.utc}' then 1 else 0 end) desc")
+      query = query.order("sum(case when likes.liked = true and likes.updated_at > '#{RECENT_LIKES_TIMEFRAME}' then 1 else 0 end) desc")
     end
 
-    @dogs = query.order(updated_at: :DESC, id: :DESC).limit(DOGS_PER_PAGE).offset((@page_number - 1) * DOGS_PER_PAGE)
+    @dogs = query.order(updated_at: :DESC, id: :DESC)
+                 .limit(DOGS_PER_PAGE).offset((@page_number - 1) * DOGS_PER_PAGE)
+                 .select("dogs.*, sum(case when likes.liked = true then 1 else 0 end) as likes_count, sum(case when likes.liked = true and likes.updated_at > '#{RECENT_LIKES_TIMEFRAME}' then 1 else 0 end) as last_hour")
 
     @total_pages = (Dog.count.to_f / DOGS_PER_PAGE).ceil
   end

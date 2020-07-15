@@ -37,3 +37,7 @@ View the site at http://localhost:3000
 - [x] Allow sorting the index page by number of likes in the last hour
 
 - [x] Display the ad.jpg image (saved at app/assets/images/ad.jpg) after every 2 dogs in the index page, to simulate advertisements in a feed.
+
+### OTHER A.HAAS NOTES
+
+- I know rspec is failing now since I restrictued the ability to create a dog without having a current user set. Due to time I did not fix / update these tests. I can revisit if you would like to me to fix and expand the specs based on the new features.
